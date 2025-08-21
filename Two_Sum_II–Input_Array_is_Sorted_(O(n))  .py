@@ -1,21 +1,22 @@
-def search(nums,target):
-    sort_num=sorted(nums)
-    low=0
-    high=len(sort_num)-1
-    increment = 0
-    while low <= high:
-        sum = sort_num[low] + sort_num[high]
-        if sum == target:
-            increment +=1
-            return f"The sum of value at index {low}+{high} gives {sum} from sorted array :- {sort_num} and it took {increment} attempts to find target "
-        elif sum < target:
-            increment +=1
-            low +=1
+def search(array):
+    head,tail=0,len(array)-1
+    result = [0] * len(array)
+    pros= len(array)-1
+    while head <= tail:
+        if abs(array[tail]) > abs(array[head]):
+            result[pros] = array[tail] ** 2
+            tail -=1
         else:
-            increment +=1
-            high -=1
-    return f"There is no target in this array"
-Input = search([6,5,8,2,3,9,2,6],12)
-print(Input)
+            result[pros] =  array [head] ** 2
+            head +=1
+        pros -=1
+    return sorted(result)
 
+
+
+
+
+
+input=search([3,4,1,2])
+print(input)
 
