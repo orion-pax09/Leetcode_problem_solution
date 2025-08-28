@@ -1,20 +1,19 @@
-def mergeinterval(s):
-    if not s or s==0:
-        return None
-    intervals=sorted(s)
+def insertinterval(intervals,new_interval):
+    interval=sorted(intervals,key=lambda  x : x[0])
     i=0
-    n=len(intervals)
-    for j in range(1,n):
-        if intervals[i][1]>=intervals[j][0]:
-            intervals[i][1]=max(intervals[i][1],intervals[j][1])
-        else:
-            i +=1
-            intervals[i]=intervals[j]
-    return f"{intervals[:i +1]}"
-
-
-
-Input=mergeinterval([[3,4],[1,5],[6,3],[5,8],[2,7],[15,70],[5,18]])
+    n=len(interval)
+    result=[]
+    while i < n and  interval[i][1] < new_interval[0]:
+        result.append(interval[i])
+        i +=1
+    while i < n and interval[i][0] <= new_interval[1]:
+        new_interval[0]=min(interval[i][0],new_interval[0])
+        new_interval[1]=max(interval[i][1],new_interval[1])
+        i +=1
+    result.append(new_interval)
+    while i < n:
+        result.append(interval[i])
+        i +=1
+    return result
+Input=insertinterval([[3,6],[5,6],[2,5],[8,10]],[4,7])
 print(Input)
-
-
