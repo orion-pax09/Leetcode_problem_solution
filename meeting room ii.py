@@ -2,7 +2,7 @@ import heapq
 def NMEETINGROOMii(interval):
     Interval=sorted(interval,key=lambda x: x[0])
     heap=[]
-    heapq.heappush(heap,Interval[1][0])
+    heapq.heappush(heap,Interval[0][1])
     for s in range(1,len(interval)):
         start,end=Interval[s]
         if start >= heap[0]:
